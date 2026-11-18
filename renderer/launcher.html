@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<title>FolderGlow Apps</title>
+<link rel="stylesheet" href="launcher.css">
+</head>
+<body>
+  <div id="shade"></div>
+  <div id="wrap">
+    <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Escribe para buscar…" autocomplete="off" spellcheck="false"></div>
+    <div id="wins"></div>
+    <div id="viewport"><div id="pages"></div><p id="empty"></p></div>
+    <div id="dots"></div>
+    <div class="tabs"><button data-t="freq">Frecuentes</button><button data-t="lib">Biblioteca</button><button data-t="all" class="on">Todas</button><button data-t="games">Juegos</button></div>
+    <div id="folder"><div class="fpanel"><b id="fname"></b><div id="fgrid"></div></div></div>
+  </div>
+  <script src="launcher.js"></script>
+</body></html>

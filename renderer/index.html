@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: file:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<title>FolderGlow Studio</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="drag"></div>
+<nav>
+  <div class="brand"><img src="logo.png" alt=""><div><b>FolderGlow</b><span>Studio</span></div></div>
+  <button data-tab="home" class="on"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9c0-1.7-1.3-3-3-3h-2a2 2 0 0 1-2-2V5c0-1.1-.9-2-2-2z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="7.5" cy="14.5" r="1"/></svg></i>Personalizar</button>
+  <button data-tab="widgets"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></i>Widgets</button>
+  <button data-tab="apps"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="1.6"/><circle cx="12" cy="5" r="1.6"/><circle cx="19" cy="5" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/><circle cx="5" cy="19" r="1.6"/><circle cx="12" cy="19" r="1.6"/><circle cx="19" cy="19" r="1.6"/></svg></i>Aplicaciones</button>
+  <button data-tab="games"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.5" r=".9" fill="currentColor"/></svg></i>Juegos</button>
+  <button data-tab="glass"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 4v5"/></svg></i>Cristal</button>
+  <button data-tab="fx"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg></i>Efectos</button>
+  <button data-tab="icons"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>Iconos</button>
+  <button data-tab="tools"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></i>Complementos</button>
+  <div class="sp"></div>
+  <button data-tab="settings"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></i>Ajustes</button>
+</nav>
+<main>
+  <!-- WIDGETS -->
+  <section id="home" class="tab on">
+    <header><h1>Personalizar</h1><p>Elige una plantilla: pone el fondo, el estilo y los widgets ordenados en tu escritorio. Luego ajusta lo que quieras.</p></header>
+    <div class="card hero dockcard">
+      <div class="ch"><h3>Dock tipo Mac y barra superior</h3><span class="mut sm">Reemplazan la barra de tareas de Windows</span></div>
+      <div class="grid2">
+        <div>
+          <label class="sw"><input type="checkbox" id="dEn"><span></span><div><b>Dock</b><small>Apps fijadas y abiertas, ampliación al pasar el mouse, clic derecho para fijar o cerrar.</small></div></label>
+          <label class="sw"><input type="checkbox" id="dTop"><span></span><div><b>Barra superior</b><small>Fecha y hora al centro, Wi-Fi, sonido y ajustes a la derecha.</small></div></label>
+          <label class="sw"><input type="checkbox" id="dAuto"><span></span><div><b>Ocultar automáticamente</b><small>Aparece al llevar el mouse al borde inferior.</small></div></label>
+        </div>
+        <div>
+          <label>Tamaño de iconos <output id="oDS"></output><input type="range" id="dSize" min="36" max="72" step="2"></label>
+          <label>Ampliación <output id="oDM"></output><input type="range" id="dMag" min="100" max="220" step="10"></label>
+          <p class="mut sm">Al salir de FolderGlow la barra de Windows vuelve sola.</p>
+        </div>
+      </div>
+    </div>
+    <h2>Plantillas</h2>
+    <div id="tplGrid" class="tpl-grid"></div>
+    <label class="sw" style="margin-top:14px"><input type="checkbox" id="tplReplace" checked><span></span>Reemplazar mis widgets actuales al aplicar una plantilla</label>
+    <h2>Fondos de pantalla</h2>
+    <div id="wallGrid" class="wall-grid"></div>
+    <p class="mut sm">Los widgets con material “Vidrio” se ven desenfocados sobre el fondo que elijas, como en iPadOS. Para fondos animados (video o HTML) instala Lively Wallpaper desde Complementos; los widgets siguen funcionando encima.</p>
+  </section>
+
+  <section id="widgets" class="tab">
+    <header><h1>Widgets</h1><p>Fijos en el escritorio por defecto: quedan debajo de tus apps y no se ocultan con Win + D. Clic derecho sobre un widget para más opciones.</p></header>
+    <div id="gallery" class="gallery"></div>
+    <h2>En tu escritorio</h2>
+    <div id="wlist" class="stack"></div>
+    <p id="wempty" class="mut">Aún no tienes widgets. Añade uno desde la galería.</p>
+  </section>
+
+  <!-- APLICACIONES -->
+  <section id="apps" class="tab">
+    <header><h1>Aplicaciones</h1><p>Menú de apps a pantalla completa, como en GNOME: búsqueda, cuadrícula paginada, frecuentes y todas. Incluye apps de escritorio y de Microsoft Store.</p></header>
+    <div class="card hero">
+      <div class="row" style="margin:0"><button class="pri" id="lOpen">Abrir ahora</button><button id="lScan">Volver a escanear apps</button><span id="lSt" class="st"></span></div>
+    </div>
+    <div class="card">
+      <h3>Cómo abrirlo</h3>
+      <label>Atajo de teclado <output id="lKeyOut"></output></label>
+      <div class="row" style="margin-top:6px"><input type="text" id="lKey" readonly placeholder="Pulsa aquí y luego la combinación" class="grow"><button class="ghost" id="lKeyClr">Quitar</button></div>
+      <label class="sw"><input type="checkbox" id="lWin"><span></span><div><b>Tecla Windows</b><small>Pulsar solo Win abre este menú en lugar de Inicio. Win + otra tecla (Win+E, Win+D…) sigue igual.</small></div></label>
+      <label class="sw"><input type="checkbox" id="lCorner"><span></span><div><b>Esquina activa</b><small>Lleva el puntero a la esquina superior izquierda, como en GNOME.</small></div></label>
+    </div>
+    <div class="card">
+      <label class="sw"><input type="checkbox" id="lHide"><span></span>Ocultar desinstaladores, ayudas y enlaces web</label>
+      <p class="mut sm">Atajos dentro del menú: escribe para buscar · ← → ↑ ↓ para moverte · Enter abre · Re Pág/Av Pág o la rueda cambian de página · Esc cierra · F5 vuelve a escanear.</p>
+    </div>
+  </section>
+
+  <!-- JUEGOS (estilo Playnite) -->
+  <section id="games" class="tab wide">
+    <div class="gbar">
+      <div class="gsearch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="gq" placeholder="Buscar en la biblioteca" spellcheck="false"></div>
+      <div class="seg sm" id="gSrc"><button value="all">Todas</button><button value="steam">Steam</button><button value="epic">Epic</button><button value="gog">GOG</button><button value="ubisoft">Ubisoft</button><button value="riot">Riot</button><button value="custom">Míos</button></div>
+      <select id="gSort" class="gsel"><option value="last">Jugado recientemente</option><option value="name">Nombre</option><option value="playtime">Tiempo de juego</option><option value="added">Añadido recientemente</option></select>
+      <button class="gtg" id="gFav" title="Solo favoritos">★</button>
+      <button class="gtg" id="gHid" title="Ver ocultos">◌</button>
+      <button class="gtg" id="gNames" title="Mostrar nombres">Aa</button>
+      <input type="range" id="gZoom" min="110" max="230" value="150" title="Tamaño de portadas">
+      <span class="sp"></span>
+      <button id="gmScan" title="Volver a escanear">⟳</button>
+      <button class="pri" id="gmAdd">+ Añadir juego</button>
+    </div>
+    <div class="glib"><div id="ggrid" class="ggrid"></div><aside id="gdet" class="gdet"></aside></div>
+    <div class="gstat" id="gmSt"></div>
+  </section>
+  <div id="gmenu" class="gmenu"></div>
+
+  <!-- CRISTAL -->
+  <section id="glass" class="tab">
+    <header><h1>Cristal</h1><p>Motor nativo GlowGlass: 1–2 MB de RAM, 0 % de CPU en reposo, sin Python.</p></header>
+    <div class="card">
+      <div class="ch"><h3>Barra de tareas</h3></div>
+      <div class="seg" data-k="taskbar"><button value="clear">Transparente</button><button value="blur">Desenfoque</button><button value="acrylic">Acrílico</button><button value="off">No tocar</button></div>
+      <div class="pair"><label>Tinte <input type="color" id="gTint"></label><label class="grow">Intensidad <input type="range" id="gAlpha" min="0" max="255"></label></div>
+      <p class="mut sm">En Windows 11 22H2+ la barra dibuja su propio fondo: si no ves cambio, instala TranslucentTB o Windhawk desde Complementos.</p>
+    </div>
+    <div class="card hero">
+      <div class="ch"><h3>Carpetas translúcidas · desenfoque real</h3><span id="bState" class="pill">No instalado</span></div>
+      <p class="mut sm">Tu fondo de pantalla se ve desenfocado detrás de toda la carpeta y el texto queda nítido. Usa ExplorerBlurMica (código abierto, LGPL); FolderGlow lo descarga de GitHub, lo configura y lo registra. Windows pedirá permiso de administrador.</p>
+      <label>Efecto</label>
+      <div class="seg" id="bEffect"><button value="3">Desenfoque nítido</button><button value="1">Acrílico</button><button value="2">Mica</button><button value="4">Mica Alt</button><button value="0">Desenfoque (≤ 22H2)</button></div>
+      <div class="grid2">
+        <label>Tinte en modo oscuro <input type="color" id="bDarkC"><output id="oBD"></output><input type="range" id="bDarkA" min="0" max="255"></label>
+        <label>Tinte en modo claro <input type="color" id="bLightC"><output id="oBL"></output><input type="range" id="bLightA" min="0" max="255"></label>
+      </div>
+      <label class="sw"><input type="checkbox" id="bAddr"><span></span>Barra de direcciones transparente</label>
+      <label class="sw"><input type="checkbox" id="bWinUI"><span></span>Barra de herramientas transparente (Windows 11)</label>
+      <label class="sw"><input type="checkbox" id="bBar"><span></span>Barras de desplazamiento transparentes</label>
+      <label class="sw"><input type="checkbox" id="bLine"><span></span>Línea entre el panel lateral y el contenido</label>
+      <div class="row"><button class="pri" id="bGo">Instalar y activar</button><button id="bApply">Aplicar cambios</button><button id="bRestart">Reiniciar Explorador</button><button class="ghost" id="bOff">Desactivar</button></div>
+      <p class="mut sm">Aplicar y activar reinician el Explorador (la barra de tareas parpadea un segundo); tus carpetas abiertas se vuelven a abrir.</p>
+      <p id="bSt" class="st"></p>
+      <details><summary class="mut sm">Diagnóstico</summary><pre id="bLog" class="log"></pre></details>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>Carpetas (Explorador) · sin extensión</h3></div>
+      <div class="seg" data-k="explorer"><button value="mica">Mica</button><button value="acrylic">Acrílico</button><button value="tabbed">Mica Alt</button><button value="off">No tocar</button></div>
+      <label>Opacidad de la ventana <output id="oEx"></output><input type="range" id="gExOp" min="40" max="100"></label>
+      <p class="mut sm">Por debajo de 100 % toda la ventana se vuelve translúcida (también el texto). Para desenfoque real dentro de las carpetas usa ExplorerBlurMica.</p>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>CMD y PowerShell (consola clásica)</h3></div>
+      <div class="seg" data-k="console"><button value="acrylic">Acrílico</button><button value="mica">Mica</button><button value="off">No tocar</button></div>
+      <label>Opacidad <output id="oCo"></output><input type="range" id="gCoOp" min="40" max="100"></label>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>Windows Terminal</h3><span class="mut sm">En Windows 11, CMD se abre aquí</span></div>
+      <label>Opacidad <output id="oWt"></output><input type="range" id="tOp" min="20" max="100" value="80"></label>
+      <label class="sw"><input type="checkbox" id="tAcr" checked><span></span>Acrílico (desenfoque)</label>
+      <div class="row"><button id="tGo">Aplicar a Terminal</button><button class="ghost" id="tReset">Restaurar</button></div>
+      <p id="tSt" class="st"></p>
+    </div>
+    <div class="card">
+      <label class="sw"><input type="checkbox" id="gDark"><span></span>Barra de título oscura</label>
+      <label class="sw"><input type="checkbox" id="gAuto"><span></span>Activar el cristal al iniciar Windows</label>
+    </div>
+    <div class="bar"><button class="pri" id="gGo">Guardar y activar</button><button class="ghost" id="gStop">Detener y restaurar</button><span id="gSt" class="st"></span></div>
+  </section>
+
+  <!-- EFECTOS -->
+  <section id="fx" class="tab">
+    <header><h1>Efectos</h1><p>Se dibujan en capas diminutas que solo existen durante la animación y se liberan al terminar. Se desactivan solos con juegos o vídeo a pantalla completa.</p></header>
+    <div class="card">
+      <label class="sw"><input type="checkbox" id="fOpen"><span></span><div><b>Halo al abrir o restaurar apps</b><small>Un borde de luz de 300 ms alrededor de la ventana nueva.</small></div></label>
+      <label class="sw"><input type="checkbox" id="fClick"><span></span><div><b>Onda al hacer clic</b><small>Anillo de 380 ms en el cursor. Usa un gancho de ratón ligero.</small></div></label>
+      <label class="pair">Color del efecto <input type="color" id="fColor"></label>
+      <div class="presets" id="fPresets"></div>
+    </div>
+    <div class="bar"><button class="pri" id="fGo">Guardar y activar</button><span id="fSt" class="st"></span></div>
+  </section>
+
+  <!-- ICONOS -->
+  <section id="icons" class="tab">
+    <header><h1>Iconos</h1><p>Iconos neón para carpetas, apps y accesos directos. Restaurar devuelve los originales.</p></header>
+    <div class="cols">
+      <div class="card col">
+        <div class="row"><button id="addF">+ Carpetas</button><button id="addC">+ Subcarpetas de…</button><button id="addA">+ Apps</button><button class="ghost" id="rm">Quitar</button></div>
+        <select id="list" multiple></select>
+        <div class="row"><button class="pri" id="apply">Aplicar</button><button class="ghost" id="restore">Restaurar originales</button></div>
+        <p id="st" class="st"></p>
+      </div>
+      <div class="card side">
+        <canvas id="pv" width="200" height="200"></canvas>
+        <div id="presets" class="presets"></div>
+        <div class="pair"><label>Color 1 <input type="color" id="c1"></label><label>Color 2 <input type="color" id="c2"></label></div>
+        <label>Símbolo<select id="glyph"></select></label>
+        <label class="sw"><input type="checkbox" id="tr" checked><span></span>Interior transparente</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLEMENTOS -->
+  <section id="tools" class="tab">
+    <header><h1>Complementos</h1><p>Proyectos gratuitos de GitHub que amplían lo que el motor nativo no puede hacer sin inyectar código en Windows.</p></header>
+    <div id="toolGrid" class="gallery wide"></div>
+  </section>
+
+  <!-- AJUSTES -->
+  <section id="settings" class="tab">
+    <header><h1>Ajustes</h1></header>
+    <div class="card">
+      <label class="sw"><input type="checkbox" id="sAuto"><span></span><div><b>Iniciar con Windows</b><small>Arranca en la bandeja con tus widgets.</small></div></label>
+      <label class="sw"><input type="checkbox" id="sEco"><span></span><div><b>Modo ahorro</b><small>Desactiva la GPU en FolderGlow: menos memoria de vídeo. Requiere reiniciar la app.</small></div></label>
+    </div>
+    <div class="card">
+      <h3>Token de GitHub (opcional)</h3>
+      <p class="mut sm">Sin token GitHub permite pocas consultas por hora. Crea un token "fine-grained" sin permisos extra en github.com/settings/tokens.</p>
+      <div class="row"><input type="password" id="sTok" placeholder="github_pat_…" class="grow"><button id="sTokSave">Guardar</button></div>
+    </div>
+    <div class="card">
+      <h3>SteamGridDB (opcional)</h3>
+      <p class="mut sm">Portadas para juegos que no están en Steam ni traen arte (GOG, Ubisoft, emuladores…). Igual que en Playnite: crea una clave gratis en steamgriddb.com → Preferencias → API.</p>
+      <div class="row"><input type="password" id="sSgdb" placeholder="Clave de API" class="grow"><button id="sSgdbSave">Guardar</button></div>
+    </div>
+    <div class="card">
+      <h3>Consumo</h3>
+      <p class="mut sm">Motor nativo: ~1–2 MB. Cada widget es una ventana web (~35–50 MB de RAM). Los widgets tapados por otras ventanas se congelan solos. Cierra esta ventana cuando no la uses: la app sigue en la bandeja.</p>
+    </div>
+    <p id="sSt" class="st"></p>
+  </section>
+</main>
+<div id="toast"></div>
+<script src="app.js"></script>
+</body></html>

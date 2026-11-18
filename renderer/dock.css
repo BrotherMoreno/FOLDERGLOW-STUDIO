@@ -1,0 +1,33 @@
+/* Dock estilo macOS: píldora de vidrio, ampliación por coseno, rebote al abrir. Solo transform/opacity/width. */
+:root { --s: 52px; --ease: cubic-bezier(.23, 1, .32, 1); --font: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: transparent; user-select: none; font: 12px var(--font); }
+body { display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; }
+#dock { position: relative; display: flex; align-items: flex-end; padding: 8px 10px; border-radius: 24px; overflow: visible;
+  transition: transform 320ms var(--ease), opacity 220ms var(--ease); }
+#glass { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; background: rgba(40, 40, 46, .38) center/cover;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .22) inset, 0 0 0 .5px rgba(0, 0, 0, .35), 0 10px 30px rgba(0, 0, 0, .3); }
+#glass::after { content: ''; position: absolute; inset: 0; background: rgba(255, 255, 255, .1); }
+.hide #dock { transform: translateY(calc(100% + 12px)); opacity: 0; }
+#icons { position: relative; display: flex; align-items: flex-end; gap: 6px; height: var(--s); }
+.it { position: relative; width: var(--s); height: var(--s); flex: none; display: flex; align-items: flex-end; justify-content: center; }
+.it .ic { width: 100%; aspect-ratio: 1; border-radius: 22%; display: block; object-fit: contain; transform-origin: 50% 100%;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .28)); will-change: width; }
+.it .ph { width: 100%; aspect-ratio: 1; border-radius: 24%; display: grid; place-items: center; color: #fff; font: 700 20px var(--font);
+  background: linear-gradient(160deg, #5e5ce6, #0a84ff); }
+.it .dot { position: absolute; bottom: -7px; left: 50%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: rgba(255, 255, 255, .85);
+  opacity: 0; transition: opacity 200ms var(--ease); }
+.it.run .dot { opacity: 1; }
+.it.act .dot { background: #fff; box-shadow: 0 0 6px #fff; }
+.it:active .ic { filter: brightness(.7) drop-shadow(0 3px 6px rgba(0, 0, 0, .28)); }
+.it.bounce { animation: bounce 900ms var(--ease) 1; }
+@keyframes bounce { 0%, 100% { transform: none; } 18% { transform: translateY(-22px); } 36% { transform: none; } 54% { transform: translateY(-12px); } 72% { transform: none; } }
+.sep { width: 1px; align-self: stretch; margin: 4px 6px; background: rgba(255, 255, 255, .28); flex: none; }
+.it .ic.sys { display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.16)); border-radius: 24%; color: #fff;
+  box-shadow: 0 0 0 .5px rgba(255,255,255,.35) inset; }
+.it .ic.sys svg { width: 50%; height: 50%; flex: none; }
+#tip { position: fixed; padding: 4px 10px; border-radius: 7px; background: rgba(36, 36, 40, .92); color: #fff; font-size: 12.5px; white-space: nowrap;
+  box-shadow: 0 0 0 .5px rgba(255, 255, 255, .2), 0 4px 12px rgba(0, 0, 0, .35); opacity: 0; transform: translate(-50%, 4px);
+  transition: opacity 120ms var(--ease), transform 120ms var(--ease); pointer-events: none; }
+#tip.on { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

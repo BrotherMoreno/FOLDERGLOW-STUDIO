@@ -1,0 +1,67 @@
+FolderGlow Studio — Licencia de uso (todos los derechos reservados)
+Copyright (c) 2026 Brother Moreno. Todos los derechos reservados.
+
+Este software ("FolderGlow Studio", sus instaladores, su código fuente, sus
+recursos gráficos y su documentación) es propiedad de Brother Moreno (el
+"Autor"). Al descargarlo o usarlo aceptas los siguientes términos.
+
+1. PERMISOS
+   Se te concede una licencia personal, gratuita, no exclusiva e
+   intransferible para descargar, instalar y usar el software, tal como se
+   distribuye, en tus propios equipos y para uso propio.
+
+2. PROHIBICIONES
+   Sin autorización previa y por escrito del Autor, NO puedes:
+   a) vender, alquilar, sublicenciar ni cobrar por el software, ni
+      incluirlo en un producto o servicio de pago;
+   b) modificar, adaptar, traducir ni crear obras derivadas del software o
+      de su código fuente;
+   c) descompilar, aplicar ingeniería inversa ni extraer el código o los
+      recursos del software, salvo donde la ley lo permita expresamente;
+   d) redistribuir, republicar ni volver a publicar el software o su código
+      fuente, ya sea original o modificado, de forma gratuita o de pago;
+   e) quitar o alterar los avisos de autoría y de copyright;
+   f) presentar el software como si fuera tuyo.
+
+3. CÓDIGO FUENTE
+   Que el código fuente esté visible en un repositorio no implica licencia
+   para copiarlo, modificarlo ni reutilizarlo. Solo se permite lo que
+   indica el apartado 1.
+
+4. COMPONENTES DE TERCEROS
+   El software incluye componentes de terceros (por ejemplo Electron,
+   Chromium y las fuentes Press Start 2P y VT323) que se rigen por sus
+   propias licencias. Esta licencia no cambia los términos de esos
+   componentes.
+
+5. SIN GARANTÍA
+   El software se entrega "tal cual", sin garantía de ningún tipo, expresa o
+   implícita. El Autor no será responsable de daños ni pérdidas derivadas
+   del uso del software. El software modifica elementos del sistema (por
+   ejemplo oculta la barra de tareas de Windows); úsalo bajo tu
+   responsabilidad.
+
+6. TERMINACIÓN
+   Esta licencia termina automáticamente si incumples cualquiera de sus
+   términos. En ese caso debes dejar de usar el software y eliminar todas
+   las copias.
+
+7. CONTACTO
+   Para pedir permisos adicionales (por ejemplo, uso comercial), contacta al
+   Autor a través de su perfil de GitHub.
+
+---------------------------------------------------------------------------
+
+FolderGlow Studio — License (all rights reserved)
+Copyright (c) 2026 Brother Moreno. All rights reserved.
+
+You may download, install and use this software as distributed, for your
+own personal use, free of charge. Without the Author's prior written
+permission you may NOT sell, rent or sublicense it; modify it or create
+derivative works; reverse engineer it; redistribute or republish it or its
+source code (original or modified); or remove copyright notices. Source
+code visibility does not grant any license to copy, modify or reuse it.
+Third-party components (Electron, Chromium, fonts) remain under their own
+licenses. The software is provided "as is", without warranty of any kind,
+and the Author is not liable for any damages arising from its use. This
+license terminates automatically if you breach any of its terms.

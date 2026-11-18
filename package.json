@@ -1,0 +1,70 @@
+{
+  "name": "folderglow-studio",
+  "version": "2.5.2",
+  "description": "Cristal translúcido, efectos y widgets de escritorio para Windows",
+  "main": "main.js",
+  "author": "Brother Moreno",
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis portable --x64 --publish never",
+    "pack": "electron-builder --win dir --x64 --publish never"
+  },
+  "devDependencies": {
+    "electron": "33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.folderglow.studio",
+    "productName": "FolderGlow Studio",
+    "copyright": "Brother Moreno",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "games.js",
+      "renderer/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "tools",
+        "to": "tools",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "asar": true,
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "artifactName": "FolderGlow-Studio-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "FolderGlow-Studio-${version}-portable.${ext}"
+    }
+  },
+  "private": true
+}
