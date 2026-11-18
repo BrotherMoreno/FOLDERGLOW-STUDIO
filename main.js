@@ -103,7 +103,7 @@ const WTYPES = {
   appfolder: { w: 230, h: 230, opts: { cat: 'Favoritos', style: 'folder' } },
   actions:   { w: 300, h: 200, opts: {} },
   quote:     { w: 380, h: 190, opts: { text: 'Hazlo simple, pero significativo.', author: '' } },
-  profile:   { w: 280, h: 300, opts: { name: 'USUARIO', status: 'En línea', avatar: '' } },
+  profile:   { w: 280, h: 300, opts: { name: 'Robert', status: 'En línea', avatar: '' } },
   network:   { w: 340, h: 190, opts: {} },
   html:      { w: 360, h: 260, opts: { src: '' } },
   ghcontrib: { w: 560, h: 200, opts: { user: '', palette: 'green' } },
@@ -440,15 +440,33 @@ let wallVer = 0;
 function broadcast(ch, ...a) {
   for (const w of BrowserWindow.getAllWindows()) if (!w.isDestroyed()) w.webContents.send(ch, ...a);
 }
+let regWall = { t: 0, v: null };
+function regWallpaper() { // ruta del fondo que Windows tiene configurado ahora mismo
+  if (process.platform !== 'win32') return null;
+  if (Date.now() - regWall.t < 1500) return regWall.v;
+  let v = null;
+  try {
+    const out = require('child_process').execFileSync('reg', ['query', 'HKCU\\Control Panel\\Desktop', '/v', 'WallPaper'], { encoding: 'utf8', windowsHide: true, timeout: 2500 });
+    const m = out.match(/WallPaper\s+REG_SZ\s+(.+)/i);
+    v = m ? m[1].trim() : null;
+  } catch (_) {}
+  regWall = { t: Date.now(), v };
+  return v;
+}
+let wallStamp = '';
 function currentWall() { // copia el fondo real de Windows a un .jpg que Chromium pueda leer
   fs.mkdirSync(WALL_CACHE, { recursive: true });
   const dst = path.join(WALL_CACHE, 'actual.jpg');
   try {
-    const src = fs.existsSync(TRANSCODED) ? TRANSCODED : cfg.wallpaper;
-    if (src && fs.existsSync(src)) {
-      const m = fs.statSync(src).mtimeMs;
-      if (!fs.existsSync(dst) || fs.statSync(dst).mtimeMs < m) fs.copyFileSync(src, dst);
-      wallVer = Math.round(m);
+    const reg = regWallpaper();
+    const ok = (p) => p && fs.existsSync(p) && fs.statSync(p).isFile() && fs.statSync(p).size > 0;
+    const regOk = ok(reg) && /\.(jpe?g|png|bmp|webp)$/i.test(reg);
+    const src = regOk ? reg : ok(TRANSCODED) ? TRANSCODED : cfg.wallpaper;
+    if (ok(src)) {
+      const st = fs.statSync(src);
+      const stamp = src + '|' + st.mtimeMs + '|' + st.size;
+      if (!fs.existsSync(dst) || stamp !== wallStamp) { fs.copyFileSync(src, dst); wallStamp = stamp; }
+      wallVer = Math.round(st.mtimeMs) + st.size;
     }
   } catch (_) {}
   return fs.existsSync(dst) ? fileUrlOf(dst) + '?v=' + wallVer : null;
@@ -1027,6 +1045,7 @@ async function applyWorkArea() {
   const bottom = cfg.dock.enabled && taskbarHidden ? b.y + b.height - (cfg.dock.autohide ? 0 : pill + 12) : w.y + w.height;
   const L = Math.round(w.x * s), T = Math.round((b.y + top) * s), R = Math.round((w.x + w.width) * s), B = Math.round(bottom * s);
   await run(glassExe(), ['--workarea', String(L), String(T), String(R), String(B)]);
+  setTimeout(placeBars, 300); setTimeout(placeBars, 1200); // Windows mueve las ventanas al cambiar el área de trabajo
 }
 async function setTaskbarHidden(hide, force) {
   if (!force && hide === taskbarHidden) return; // no tocar Explorer si no cambió nada (evita parpadeos y bucles)
@@ -1043,8 +1062,27 @@ function makeBar(file, bounds, extra = {}) {
   w.loadFile(path.join(__dirname, 'renderer', file + '.html'), { query: { size: cfg.dock.size, mag: cfg.dock.magnify, autohide: cfg.dock.autohide ? 1 : 0 } });
   // la barra nueva se rellena al instante, sin esperar al siguiente sondeo
   w.webContents.once('did-finish-load', () => { if (lastDockData && !w.isDestroyed()) w.webContents.send('dock:update', lastDockData); });
-  w.once('ready-to-show', () => w.showInactive());
+  w.once('ready-to-show', () => { w.showInactive(); setTimeout(placeBars, 350); });
+  pinBar(w, file === 'dock' ? 'dock' : 'top');
   return w;
+}
+// Mantiene cada barra pegada a su borde (arriba / abajo) aunque Windows la empuje hacia el área de trabajo.
+function pinBar(w, key) {
+  let t = null, tries = 0;
+  const near = (a, b) => Math.abs(a.x - b.x) <= 2 && Math.abs(a.y - b.y) <= 2 && Math.abs(a.width - b.width) <= 2 && Math.abs(a.height - b.height) <= 2;
+  const fix = () => {
+    if (w.isDestroyed()) return;
+    const want = barBounds()[key];
+    if (near(w.getBounds(), want)) { tries = 0; return; }
+    if (tries++ < 8) w.setBounds(want);
+  };
+  w.on('move', () => { clearTimeout(t); t = setTimeout(fix, 120); });
+  w.on('resize', () => { clearTimeout(t); t = setTimeout(fix, 120); });
+}
+function placeBars() { // solo recoloca; no toca el área de trabajo
+  const bb = barBounds();
+  if (dockWin && !dockWin.isDestroyed()) dockWin.setBounds(bb.dock);
+  if (topWin && !topWin.isDestroyed()) topWin.setBounds(bb.top);
 }
 function barBounds() {
   const { d, H } = dockGeom();
@@ -1083,9 +1121,7 @@ async function stopDock(which, restart) {
   scheduleWorkArea();
 }
 function repositionBars() { // cambió la pantalla: mover las barras, no destruirlas
-  const bb = barBounds();
-  if (dockWin && !dockWin.isDestroyed()) dockWin.setBounds(bb.dock);
-  if (topWin && !topWin.isDestroyed()) topWin.setBounds(bb.top);
+  placeBars();
   scheduleWorkArea();
 }
 let revealed = false, leaveAt = 0;

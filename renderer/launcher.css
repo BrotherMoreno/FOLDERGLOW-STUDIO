@@ -120,3 +120,12 @@ body.open #wrap { transition-duration: 280ms; }
 .win span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; margin-top: 8px; }
 @media (prefers-reduced-motion: reduce) { .app, .game, .win { animation: none; } }
 .typing .app, .typing .game { animation: none; }
+
+/* ---------- v2.5.3: fondo sin mosaico, juegos centrados */
+/* ".real #shade" usa la propiedad abreviada 'background' y reiniciaba tamaño/repetición: el fondo salía en mosaico */
+#shade, .real #shade { background-repeat: no-repeat; background-size: cover; background-position: center; }
+.gview, .lib { flex: 0 0 100%; min-width: 0; }
+.gview { display: flex; height: 100%; overflow: auto; padding: 8px 16px 20px; }
+.ggrid2 { margin: auto; max-width: 1280px; display: grid; grid-template-columns: repeat(auto-fit, 168px); gap: 20px; justify-content: center; }
+.ggrid2 .game, .ggrid2 .game .cv { width: 168px; }
+.ggrid2 .game .cv { height: 252px; }

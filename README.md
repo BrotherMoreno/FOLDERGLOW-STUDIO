@@ -4,7 +4,7 @@
 
 **Cristal translúcido, dock, barra superior y widgets para tu escritorio de Windows.**
 
-![Versión](https://img.shields.io/badge/versión-2.5.2-blue)
+![Versión](https://img.shields.io/badge/versión-2.5.3-blue)
 ![Plataforma](https://img.shields.io/badge/plataforma-Windows-0078D6)
 ![Licencia](https://img.shields.io/badge/licencia-uso%20personal-lightgrey)
 

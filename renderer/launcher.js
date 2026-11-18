@@ -171,12 +171,13 @@ async function paintWall() { // tu fondo de pantalla, reducido y desenfocado (ba
   if (!g.url) return;
   const img = new Image(); img.src = g.url;
   try { await img.decode(); } catch (_) { return; }
-  const c = document.createElement('canvas'); c.width = 320; c.height = Math.round(320 * img.naturalHeight / img.naturalWidth);
-  const x = c.getContext('2d'); x.filter = 'blur(4px) saturate(1.4)'; x.drawImage(img, -8, -8, c.width + 16, c.height + 16);
+  const c = document.createElement('canvas'); c.width = 960; c.height = Math.round(960 * img.naturalHeight / img.naturalWidth);
+  const x = c.getContext('2d'); x.filter = 'blur(10px) saturate(1.3)'; x.drawImage(img, -20, -20, c.width + 40, c.height + 40);
   $('#shade').style.backgroundImage = `url("${c.toDataURL('image/jpeg', .85)}")`;
   $('#shade').classList.add('wall');
 }
 api.wall.onChange(paintWall);
+api.launcher.onOpen(() => paintWall()); // el fondo puede haber cambiado desde la última vez
 paintWall();
 
 function viewport(node) {
@@ -208,35 +209,13 @@ function openFolder(name, list) {
 }
 $('#folder').addEventListener('mousedown', (e) => { if (e.target.id === 'folder') $('#folder').classList.remove('on'); });
 
-function renderGames() {
+function renderGames() { // solo las portadas, centradas (sin banner)
   if (!games) { viewport(Object.assign(document.createElement('p'), { className: 'mut', textContent: 'Buscando tus juegos…' })); return; }
-  const list = games.filter((x) => !x.hidden).sort((a, b) => (b.last - a.last) || a.n.localeCompare(b.n));
+  const list = games.filter((x) => !x.hidden).sort((a, b) => (!!b.favorite - !!a.favorite) || (b.last - a.last) || a.n.localeCompare(b.n));
   const gv = document.createElement('div'); gv.className = 'gview';
-  const top = list.find((g) => g.last) || list[0];
-  if (top) { // banner "Continuar jugando" con el arte de fondo del juego
-    const hero = document.createElement('div'); hero.className = 'hero';
-    if (top.hero || top.cover) hero.style.backgroundImage = `url("${top.hero || top.cover}")`;
-    const hc = document.createElement('div'); hc.className = 'hc';
-    const play = Object.assign(document.createElement('button'), { className: 'play', textContent: '▶  Jugar' });
-    play.onclick = () => launch(top);
-    const meta = top.playtime ? `${(top.playtime / 60).toFixed(1).replace('.', ',')} h jugadas` : ({ steam: 'Steam', epic: 'Epic Games', gog: 'GOG', ubisoft: 'Ubisoft', riot: 'Riot', custom: 'En tu PC' }[top.src]);
-    const row = document.createElement('div'); row.className = 'row'; row.append(play);
-    hc.append(Object.assign(document.createElement('small'), { textContent: top.last ? 'Continuar jugando' : 'En tu biblioteca' }),
-      Object.assign(document.createElement('h2'), { textContent: top.n }), Object.assign(document.createElement('div'), { className: 'meta', textContent: meta }), row);
-    hero.append(hc);
-    if (top.cover) { const cv = new Image(); cv.src = top.cover; cv.className = 'cvm'; hero.append(cv); }
-    gv.append(hero);
-  }
-  const fav = list.filter((g) => g.favorite);
-  const section = (title, arr) => {
-    if (!arr.length) return;
-    const hd = document.createElement('div'); hd.className = 'ghead'; hd.append(title, Object.assign(document.createElement('span'), { textContent: arr.length }));
-    const grid = document.createElement('div'); grid.className = 'ggrid2';
-    arr.forEach((g, i) => { const t = gameTile(g, -1); t.style.setProperty('--i', Math.min(i, 30)); grid.append(t); });
-    gv.append(hd, grid);
-  };
-  section('★ Favoritos', fav);
-  section('Todos tus juegos', list);
+  const grid = document.createElement('div'); grid.className = 'ggrid2';
+  list.forEach((g, i) => { const t = gameTile(g, -1); t.style.setProperty('--i', Math.min(i, 30)); grid.append(t); });
+  gv.append(grid);
   viewport(gv);
 }
 
